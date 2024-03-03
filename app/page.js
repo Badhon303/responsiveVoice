@@ -1,6 +1,6 @@
 "use client"
 
-// import Head from "next/head"
+// import Head from "next/head";
 import Script from "next/script"
 import { useState, useEffect } from "react"
 
@@ -8,9 +8,16 @@ export default function Home() {
   const [text, setText] = useState("")
   const [isResponsiveVoiceLoaded, setIsResponsiveVoiceLoaded] = useState(false)
 
+  useEffect(() => {
+    // Check if ResponsiveVoice is already available in the global scope
+    if (window.responsiveVoice) {
+      setIsResponsiveVoiceLoaded(true)
+    }
+  }, [])
+
   const handleSpeak = () => {
-    console.log("ResponsiveVoice Loaded:", isResponsiveVoiceLoaded) // Additional logging
-    console.log("ResponsiveVoice Available:", !!window.responsiveVoice) // Additional logging
+    console.log("ResponsiveVoice Loaded:", isResponsiveVoiceLoaded)
+    console.log("ResponsiveVoice Available:", window.responsiveVoice)
     if (window.responsiveVoice && isResponsiveVoiceLoaded) {
       window.responsiveVoice.speak(text, "Arabic Male")
       console.log("Text spoken.")
@@ -23,7 +30,8 @@ export default function Home() {
     <div>
       <Script
         src="https://code.responsivevoice.org/responsivevoice.js?key=MsWPQFPp"
-        strategy="afterInteractive"
+        // strategy="afterInteractive"
+        strategy="beforeInteractive"
         onLoad={() => setIsResponsiveVoiceLoaded(true)}
       />
       <textarea

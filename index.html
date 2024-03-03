@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Text to Arabic Speech Demo</title>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=MsWPQFPp"></script>
+  </head>
+  <body>
+    <h1>Text to Arabic Speech Demo with ResponsiveVoice</h1>
+    <textarea
+      id="textToSpeak"
+      rows="4"
+      cols="50"
+      placeholder="Enter text in Arabic"
+    ></textarea>
+    <button onclick="speakText()">Speak</button>
+
+    <script>
+      function speakText() {
+        var text = document.getElementById("textToSpeak").value
+        responsiveVoice.speak(text, "Arabic Male")
+      }
+    </script>
+  </body>
+</html>
